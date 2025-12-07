@@ -1,15 +1,9 @@
-import * as React from "react";
-import gsap from "gsap";
-import {ScrollTrigger, SplitText} from "gsap/all";
+import React from 'react'
+import Navbar from '@components/Navbar/Navbar.tsx';
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
-
-
-const App: React.FC = () => {
+const App:React.FC = () => {
     return (
-        <div
-            className="text-center text-blue-400 text-6xl bg-zinc-900 w-full h-dvh flex justify-center items-center">test</div>
-    );
+        <Navbar />
+    )
 }
-
-export default App;
+export default App
