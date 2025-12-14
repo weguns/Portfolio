@@ -1,9 +1,12 @@
 import React from 'react'
-import Navbar from '@components/Navbar/Navbar.tsx';
+import {Navbar, Welcome} from '@components'
 
 const App:React.FC = () => {
     return (
-        <Navbar />
+        <main>
+            <Navbar />
+            <Welcome />
+        </main>
     )
 }
 export default App
