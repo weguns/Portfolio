@@ -14,7 +14,7 @@ const Dock = () => {
         if (!dock) return () => {
         };
 
-        const icons: NodeListOf<Element> = dock.querySelectorAll(".dock-icon");
+        const icons: Element[] = gsap.utils.toArray(".dock-icon", dock) as Element[];
 
         const animateIcons: (mouseX: number) => void = (mouseX) => {
             const {left} = dock.getBoundingClientRect();
