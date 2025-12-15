@@ -1,4 +1,4 @@
-const navLinks : {id: number, name: string, type: string}[]  = [
+const navLinks: { id: number, name: string, type: string }[] = [
     {
         id: 1,
         name: "Projects",
@@ -16,7 +16,7 @@ const navLinks : {id: number, name: string, type: string}[]  = [
     },
 ];
 
-const navIcons:{id: number; img: string}[] = [
+const navIcons: { id: number; img: string }[] = [
     {
         id: 1,
         img: "/icons/wifi.svg",
@@ -35,7 +35,9 @@ const navIcons:{id: number; img: string}[] = [
     },
 ];
 
-const dockApps = [
+export type app = { id: string; name: string; icon: string; canOpen: boolean };
+
+const dockApps: app[] = [
     {
         id: "finder",
         name: "Portfolio", // was "Finder"
