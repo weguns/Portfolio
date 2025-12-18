@@ -35,7 +35,7 @@ const navIcons: { id: number; img: string }[] = [
     },
 ];
 
-export type app = { id: string; name: string; icon: string; canOpen: boolean };
+export type app = { id: WindowKey; name: string; icon: string; canOpen: boolean };
 
 const dockApps: app[] = [
     {
@@ -75,6 +75,32 @@ const dockApps: app[] = [
         canOpen: false,
     },
 ];
+
+type WindowKey = | "finder" | "contact" | "resume" | "safari" | "photos" | "terminal" | "txtfile" | "imgfile" | "trash";
+
+interface Window {
+    isOpen: boolean;
+    zIndex: number;
+    data: null;
+}
+
+type Windows = Record<WindowKey, Window>;
+
+const INITIAL_Z_INDEX: number = 1000;
+
+const WINDOW_CONFIG: Windows = {
+    finder: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    contact: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    resume: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    safari: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    photos: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    terminal: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    txtfile: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    imgfile: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+    trash: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
+};
+
+export {INITIAL_Z_INDEX, WINDOW_CONFIG, type Window, type WindowKey, type Windows};
 
 const blogPosts = [
     {
@@ -491,18 +517,3 @@ export const locations = {
     resume: RESUME_LOCATION,
     trash: TRASH_LOCATION,
 };
-
-const INITIAL_Z_INDEX = 1000;
-
-const WINDOW_CONFIG = {
-    finder: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-    contact: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-    resume: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-    safari: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-    photos: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-    terminal: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-    txtfile: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-    imgfile: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
-};
-
-export {INITIAL_Z_INDEX, WINDOW_CONFIG};

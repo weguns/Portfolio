@@ -4,8 +4,10 @@ import gsap from "gsap";
 import {useGSAP} from "@gsap/react";
 
 import {dockApps, type app} from "@constants/main.ts";
+import useWindowStore from "@store/window.ts";
 
 const Dock = () => {
+    const {openWindow, closeWindow, windows} = useWindowStore();
 
     const dockRef = useRef<HTMLDivElement>(null)
 
@@ -57,7 +59,20 @@ const Dock = () => {
     }, []);
 
     const toggleApp = (app: app): void => {
-        console.log(`Toggling app: ${app.name} -------- UNDER DEVELOPMENT`);
+        if (!app.canOpen) return;
+
+        const window = windows[app.id]
+
+        if (!window) {
+            console.error("Window not found for app: ", app.id);
+            return;
+        }
+
+        if (window.isOpen) {
+            closeWindow(app.id);
+        } else {
+            openWindow(app.id);
+        }
     }
 
     return (
