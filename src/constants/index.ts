@@ -35,7 +35,7 @@ const navIcons: { id: number; img: string }[] = [
     },
 ];
 
-export type app = { id: WindowKey; name: string; icon: string; canOpen: boolean };
+export type app = { id: windowKey; name: string; icon: string; canOpen: boolean };
 
 const dockApps: app[] = [
     {
@@ -76,7 +76,7 @@ const dockApps: app[] = [
     },
 ];
 
-type WindowKey = | "finder" | "contact" | "resume" | "safari" | "photos" | "terminal" | "txtfile" | "imgfile" | "trash";
+type windowKey = | "finder" | "contact" | "resume" | "safari" | "photos" | "terminal" | "txtfile" | "imgfile" | "trash";
 
 interface Window {
     isOpen: boolean;
@@ -84,7 +84,7 @@ interface Window {
     data: null;
 }
 
-type Windows = Record<WindowKey, Window>;
+type Windows = Record<windowKey, Window>;
 
 const INITIAL_Z_INDEX: number = 1000;
 
@@ -100,7 +100,7 @@ const WINDOW_CONFIG: Windows = {
     trash: {isOpen: false, zIndex: INITIAL_Z_INDEX, data: null},
 };
 
-export {INITIAL_Z_INDEX, WINDOW_CONFIG, type Window, type WindowKey, type Windows};
+export {INITIAL_Z_INDEX, WINDOW_CONFIG, type Window, type windowKey, type Windows};
 
 const blogPosts = [
     {

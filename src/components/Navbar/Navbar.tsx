@@ -1,7 +1,7 @@
 import React from "react";
 import dayjs from "dayjs";
 
-import {navLinks, navIcons} from "@constants/main";
+import {navLinks, navIcons} from "@constants";
 
 const Navbar: React.FunctionComponent = () => {
     return (
