@@ -36,12 +36,10 @@ const WindowWrapper = <P extends object>(Component: React.ComponentType<P>, wind
             const el = ref.current;
             if (!el) return;
 
-            el.style.display = "block";
-
             const [instance] = Draggable.create(el, {
                 type: "x,y",
                 onPressed: () => focusWindow(windowKey),
-                trigger: "#window-header"
+                trigger: el.querySelector("#window-header") ?? el,
             })
 
             return () => instance.kill();
