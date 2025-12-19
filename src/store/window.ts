@@ -1,20 +1,20 @@
 import {create} from "zustand"
 import {immer} from "zustand/middleware/immer";
-import {INITIAL_Z_INDEX, WINDOW_CONFIG, type WindowKey, type Windows} from "@constants/main.ts";
+import {INITIAL_Z_INDEX, WINDOW_CONFIG, type windowKey, type Windows} from "@constants";
 
 interface WindowState {
     windows: Windows;
     nextZIndex: number;
-    openWindow: (windowKey: WindowKey, data?: null) => void;
-    closeWindow: (windowKey: WindowKey) => void;
-    focusWindow: (windowKey: WindowKey) => void;
+    openWindow: (windowKey: windowKey, data?: null) => void;
+    closeWindow: (windowKey: windowKey) => void;
+    focusWindow: (windowKey: windowKey) => void;
 }
 
 const useWindowStore = create<WindowState>()(immer(set => (
     {
         windows: WINDOW_CONFIG,
         nextZIndex: INITIAL_Z_INDEX + 1,
-        openWindow: (windowKey: WindowKey, data = null) =>
+        openWindow: (windowKey: windowKey, data = null) =>
             set((state) => {
                 const win = state.windows[windowKey];
                 if (!win) return;
@@ -23,7 +23,7 @@ const useWindowStore = create<WindowState>()(immer(set => (
                 win.data = data ?? win.data;
                 state.nextZIndex++;
             }),
-        closeWindow: (windowKey: WindowKey) => set(
+        closeWindow: (windowKey: windowKey) => set(
             (state) => {
                 const win = state.windows[windowKey];
                 if (!win) return;
@@ -31,7 +31,7 @@ const useWindowStore = create<WindowState>()(immer(set => (
                 win.zIndex = INITIAL_Z_INDEX;
                 win.data = null;
             }),
-        focusWindow: (windowKey: WindowKey) => set(
+        focusWindow: (windowKey: windowKey) => set(
             (state) => {
                 const win = state.windows[windowKey];
                 if (!win) return;
